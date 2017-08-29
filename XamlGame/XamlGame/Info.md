@@ -19,3 +19,13 @@ A **jó** programozó életútja az az élethosszig tartó tanulás. A felnőttk
 - Elegendő idő (Spacing)
 
 [AGES: Attention, Generation, Emotion, Spacing](https://www.inc.com/laura-garnett/four-secrets-to-learning-anything-according-to-neuroscience.html)
+
+### WPF: Windows Presentation Foundation
+
+WPF, UWP App, Xamarin
+
+### XAML
+Declaratív leírónyelv. Nem azt mondjuk meg, hogy mit kell csinálni és milyen sorrendben, hanem megmondjuk, hogy mi legyen a végeredmény.
+Extended Application Markup Language.
+
+XML alapú. Az XML nyelv szendvics felépítésű: egy-egy leírás nyitó és záró TAG-ek között szerepel. Ezek a Tag-ek beágyazhatók egymásba.
