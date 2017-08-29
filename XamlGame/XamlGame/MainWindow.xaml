@@ -4,9 +4,87 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:XamlGame"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <!-- Fejléc -->
+        <StackPanel Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    >
+            <Label Content="Visszaszámolás: 00:55" 
+                   Padding="10"
+                   Margin="10"
+                   HorizontalAlignment="Left"
+                   />
+            <Label Content="Pontszám: 6500" 
+                   Padding="10"
+                   Margin="10"
+                   HorizontalAlignment="Left"
+                   />
+            <Label Content="oooo x1" 
+                   Padding="10"
+                   Margin="10"
+                   HorizontalAlignment="Left"
+                   />
+        </StackPanel>
+
+        <!-- Kártyák -->
+
+        <fa:ImageAwesome Grid.Column="0" 
+                         Grid.Row="1"
+                         Icon="SnowflakeOutline" 
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Center" 
+                         Margin="20"
+                         />
+
+        <fa:ImageAwesome Grid.Column="1" 
+                         Grid.Row="1"
+                         Icon="Automobile" 
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Center" 
+                         Margin="20"
+                         />
+
+        <!-- Lábléc -->
+        <Button Grid.Row="2" 
+                Grid.Column="0"
+                Grid.ColumnSpan="2" 
+                Content="Nem"
+                Padding="10"
+                Margin="10"
+                HorizontalAlignment="Left"
+                />
+        <Button Grid.Row="2" 
+                Grid.Column="0"
+                Grid.ColumnSpan="2" 
+                Content="Igen"
+                Padding="10"
+                Margin="10"
+                HorizontalAlignment="Right"
+                />
+
+        <Button Grid.Row="2" 
+                Grid.Column="0"
+                Grid.ColumnSpan="2" 
+                Content="Részben"
+                Padding="10"
+                Margin="10"
+                HorizontalAlignment="Center"
+                />
+
     </Grid>
 </Window>

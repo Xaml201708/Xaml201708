@@ -53,3 +53,24 @@ Egy cikksorozat magyarul:
 
 [Képernyőrajzoláshoz: mockflow](https://mockflow.com)
 
+### FontAwesome
+Nyílt forráskódú ikonkönyvtár, karakterkészletben letölthető több, mint 600 vektorgrafikus ikon
+
+[weboldal](http://fontawesome.io/icons/)
+[GitHub kódtár](https://github.com/FortAwesome/Font-Awesome)
+
+Ezt egy [nuget csomaggal](https://www.nuget.org/packages/FontAwesome.WPF/) telepítjük
+
+A projekt könyvtára: [github](https://github.com/charri/Font-Awesome-WPF/)
+
+### Nuget
+Segítségével külső fejlesztők csomagjait használhatjuk a projektünkben. Most például a FonAwesome készletet tudunk WPF alkalmazásban használni.
+
+[Függőségek kezelése](http://netacademia.blog.hu/2016/04/21/hogy_kerulhetjuk_el_a_szoftverpusztulast_12factor_app_2_fuggosegek_kezelese)
+
+[cikksorozat első hat része magyarul](http://netacademia.blog.hu/tags/12FactorApp)
+
+[Az eredeti cikksorozat angolul](https://12factor.net/)
+
+
+
