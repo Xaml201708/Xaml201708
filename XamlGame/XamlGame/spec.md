@@ -38,4 +38,4 @@ Kezdetben elindulhatunk úgy, hogy a játék kezdőképernyője egyben az alkalm
 Játék közben vagy eltaláljuk a helyes választ, vagy nem. Ha eltaláljuk, azt a képernyőn például zöld pipával tudjuk jelezni.
 Ha nem találjuk el a helyes választ, akkor lehet piros kereszt, vagy az előző kártyalap megmutatásával a felhasználónak jelezni lehet a hibás választ.
 
-![Játék képernyő](/img/playdisplay.png)
+![Játék képernyő](img/playdisplay.png)
