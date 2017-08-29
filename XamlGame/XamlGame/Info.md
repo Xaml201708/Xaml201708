@@ -29,3 +29,5 @@ Declaratív leírónyelv. Nem azt mondjuk meg, hogy mit kell csinálni és milye
 Extended Application Markup Language.
 
 XML alapú. Az XML nyelv szendvics felépítésű: egy-egy leírás nyitó és záró TAG-ek között szerepel. Ezek a Tag-ek beágyazhatók egymásba.
+
+[Egy részletes tutorial angolul a WPF-ről](http://www.wpf-tutorial.com/)
