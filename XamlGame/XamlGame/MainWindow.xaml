@@ -91,12 +91,14 @@
                 HorizontalAlignment="Center"
                 />
 
-            <Button Grid.Row="0" 
-                Grid.Column="3"
-                Content="Új kártya"
-                Padding="10"
-                Margin="10"
-                HorizontalAlignment="Center"
+            <Button x:Name="ShowNewCard"
+                    Grid.Row="0" 
+                    Grid.Column="3"
+                    Content="Új kártya"
+                    Padding="10"
+                    Margin="10"
+                    HorizontalAlignment="Center" 
+                    Click="ShowNewCard_Click"
                 />
 
         </Grid>

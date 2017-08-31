@@ -24,5 +24,10 @@ namespace XamlGame
         {
             InitializeComponent();
         }
+
+        private void ShowNewCard_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("Megnyomták a gombot");
+        }
     }
 }
