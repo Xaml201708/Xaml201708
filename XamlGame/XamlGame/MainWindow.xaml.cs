@@ -31,10 +31,18 @@ namespace XamlGame
 
         private void ShowNewCardButton_Click(object sender, RoutedEventArgs e)
         {
+            UjKartyaHuzasa();
+        }
+
+        /// <summary>
+        /// Egy kocka dobása és új kártya húzása a dobás alapján
+        /// </summary>
+        private void UjKartyaHuzasa()
+        {
             huzasokSzama++;
 
             //ha (a húzások száma egyenlő kettővel)
-            if (huzasokSzama==2)
+            if (huzasokSzama == 2)
             { //akkor engedélyezzük a gombokat
                 NoButton.IsEnabled = true;
                 YesButton.IsEnabled = true;
@@ -67,6 +75,7 @@ namespace XamlGame
             elozoKartya = CardPlaceRight.Icon;
 
             CardPlaceRight.Icon = kartyak[dobas];
+
         }
 
         private void PartiallyButton_Click(object sender, RoutedEventArgs e)
@@ -78,24 +87,39 @@ namespace XamlGame
         {
             if (elozoKartya == CardPlaceRight.Icon)
             { //valóban egyezik, a két kártya azonos
-                System.Diagnostics.Debug.WriteLine("A válasz helyes");
+                AValaszHelyes();
             }
             else
             { //nem egyezik
-                System.Diagnostics.Debug.WriteLine("A válasz helytelen");
+                AValaszHelytelen();
             }
+
+            UjKartyaHuzasa();
         }
 
         private void NoButton_Click(object sender, RoutedEventArgs e)
         {
             if (elozoKartya == CardPlaceRight.Icon)
             { //Egyezik, a válasz helytelen
-                System.Diagnostics.Debug.WriteLine("A válasz helytelen");
+                AValaszHelytelen();
             }
             else
             { //nem egyzik, a válasz helyes
-                System.Diagnostics.Debug.WriteLine("A válasz helyes");
+                AValaszHelyes();
             }
+
+            UjKartyaHuzasa();
         }
+
+        private void AValaszHelyes()
+        {
+            CardPlaceLeft.Icon = FontAwesomeIcon.Check;
+        }
+
+        private void AValaszHelytelen()
+        {
+            CardPlaceLeft.Icon = FontAwesomeIcon.Times;
+        }
+
     }
 }
