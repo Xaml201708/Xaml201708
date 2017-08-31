@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FontAwesome.WPF;
 
 namespace XamlGame
 {
@@ -21,6 +22,7 @@ namespace XamlGame
     public partial class MainWindow : Window
     {
         int huzasokSzama = 0;
+        FontAwesomeIcon elozoKartya = FontAwesomeIcon.None;
 
         public MainWindow()
         {
@@ -36,7 +38,13 @@ namespace XamlGame
             { //akkor engedélyezzük a gombokat
                 NoButton.IsEnabled = true;
                 YesButton.IsEnabled = true;
-                PartiallyButton.IsEnabled = true;
+
+                //Ezt a későbbiekben visszatesszük
+                //PartiallyButton.IsEnabled = true;
+
+                //Innentől kezdve csak az igen és a nem gomb kell, hogy éljen
+                //Az új kártyakérő gombot letiltjuk
+                ShowNewCardButton.IsEnabled = false;
             }
 
             //kell egy hatlapos kártyacsomag
@@ -55,7 +63,39 @@ namespace XamlGame
             //System.Diagnostics.Debug.WriteLine(dobas);
 
             //amelyik kártyát kijelöli a kocka, megjelenítjük a jobboldali kártyahelyen.
+
+            elozoKartya = CardPlaceRight.Icon;
+
             CardPlaceRight.Icon = kartyak[dobas];
+        }
+
+        private void PartiallyButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void YesButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (elozoKartya == CardPlaceRight.Icon)
+            { //valóban egyezik, a két kártya azonos
+                System.Diagnostics.Debug.WriteLine("A válasz helyes");
+            }
+            else
+            { //nem egyezik
+                System.Diagnostics.Debug.WriteLine("A válasz helytelen");
+            }
+        }
+
+        private void NoButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (elozoKartya == CardPlaceRight.Icon)
+            { //Egyezik, a válasz helytelen
+                System.Diagnostics.Debug.WriteLine("A válasz helytelen");
+            }
+            else
+            { //nem egyzik, a válasz helyes
+                System.Diagnostics.Debug.WriteLine("A válasz helyes");
+            }
         }
     }
 }

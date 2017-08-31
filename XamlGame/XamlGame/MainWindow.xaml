@@ -76,26 +76,26 @@
                 Padding="10"
                 Margin="10"
                 HorizontalAlignment="Center"
-                IsEnabled="false"
+                IsEnabled="false" Click="NoButton_Click"
                 />
             <Button x:Name="YesButton"
                 Grid.Row="0" 
-                Grid.Column="1"
+                Grid.Column="2"
                 Content="Igen"
                 Padding="10"
                 Margin="10"
                 HorizontalAlignment="Center"
-                IsEnabled="false"
+                IsEnabled="false" Click="YesButton_Click"
                 />
 
             <Button x:Name="PartiallyButton"
                 Grid.Row="0" 
-                Grid.Column="2"
+                Grid.Column="1"
                 Content="Részben"
                 Padding="10"
                 Margin="10"
                 HorizontalAlignment="Center"
-                IsEnabled="false"
+                IsEnabled="false" Click="PartiallyButton_Click"
                 />
 
             <Button x:Name="ShowNewCardButton"
