@@ -20,13 +20,25 @@ namespace XamlGame
     /// </summary>
     public partial class MainWindow : Window
     {
+        int huzasokSzama = 0;
+
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void ShowNewCard_Click(object sender, RoutedEventArgs e)
+        private void ShowNewCardButton_Click(object sender, RoutedEventArgs e)
         {
+            huzasokSzama++;
+
+            //ha (a húzások száma egyenlő kettővel)
+            if (huzasokSzama==2)
+            { //akkor engedélyezzük a gombokat
+                NoButton.IsEnabled = true;
+                YesButton.IsEnabled = true;
+                PartiallyButton.IsEnabled = true;
+            }
+
             //kell egy hatlapos kártyacsomag
             var kartyak = new FontAwesome.WPF.FontAwesomeIcon[6];
             kartyak[0] = FontAwesome.WPF.FontAwesomeIcon.Car;
@@ -44,7 +56,6 @@ namespace XamlGame
 
             //amelyik kártyát kijelöli a kocka, megjelenítjük a jobboldali kártyahelyen.
             CardPlaceRight.Icon = kartyak[dobas];
-
         }
     }
 }

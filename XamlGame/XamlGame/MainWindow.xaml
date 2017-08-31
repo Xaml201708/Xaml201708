@@ -69,37 +69,43 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Row="0" 
+            <Button x:Name="NoButton"
+                Grid.Row="0" 
                 Grid.Column="0"
                 Content="Nem"
                 Padding="10"
                 Margin="10"
                 HorizontalAlignment="Center"
+                IsEnabled="false"
                 />
-            <Button Grid.Row="0" 
+            <Button x:Name="YesButton"
+                Grid.Row="0" 
                 Grid.Column="1"
                 Content="Igen"
                 Padding="10"
                 Margin="10"
                 HorizontalAlignment="Center"
+                IsEnabled="false"
                 />
 
-            <Button Grid.Row="0" 
+            <Button x:Name="PartiallyButton"
+                Grid.Row="0" 
                 Grid.Column="2"
                 Content="Részben"
                 Padding="10"
                 Margin="10"
                 HorizontalAlignment="Center"
+                IsEnabled="false"
                 />
 
-            <Button x:Name="ShowNewCard"
+            <Button x:Name="ShowNewCardButton"
                     Grid.Row="0" 
                     Grid.Column="3"
                     Content="Új kártya"
                     Padding="10"
                     Margin="10"
                     HorizontalAlignment="Center" 
-                    Click="ShowNewCard_Click"
+                    Click="ShowNewCardButton_Click"
                 />
 
         </Grid>
