@@ -45,7 +45,7 @@
 
         <fa:ImageAwesome Grid.Column="0" 
                          Grid.Row="1"
-                         Icon="SnowflakeOutline" 
+                         Icon="None" 
                          VerticalAlignment="Center"
                          HorizontalAlignment="Center" 
                          Margin="20"
@@ -53,7 +53,7 @@
 
         <fa:ImageAwesome Grid.Column="1" 
                          Grid.Row="1"
-                         Icon="Automobile" 
+                         Icon="None" 
                          VerticalAlignment="Center"
                          HorizontalAlignment="Center" 
                          Margin="20"
