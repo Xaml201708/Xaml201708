@@ -5,14 +5,14 @@ A játék egy egyszerű ***desktop*** alkalmazás (fontos döntés!) ami méri �
 
 
 ## Szereplők
-- Tudom Ányos
+### Tudom Ányos
 
   A szellemi képességeinek a növekesét kívánja nyomon követni.
 
   Mivel az egyes reakcióidők és a játékidő hosszának mérése fontos, ezeket pontosan kell mérni, adja magát a számítógépes megvalósítás.
 
 ## Forgatókönyvek
-- Játék
+### Játék (A felhasználó szemszögéből)
   
   Ányos elindítja az alkalmazást (fontos döntés!), majd, ha felkészült, akkor elindítja a játékot. Ha végzett, akkor a végeredményt a játék kijelzi.
 
@@ -39,3 +39,26 @@ Játék közben vagy eltaláljuk a helyes választ, vagy nem. Ha eltaláljuk, az
 Ha nem találjuk el a helyes választ, akkor lehet piros kereszt, vagy az előző kártyalap megmutatásával a felhasználónak jelezni lehet a hibás választ.
 
 ![Játék képernyő](img/playdisplay.png)
+
+### A játék menete részletesen (a programozó szemszögéből)
+
+Elindul a játék
+- A kezdőképernyőn nincs semmilyen felfordított kártya.
+- Megmutatjuk az első kártyát
+  
+  ilyenkor még nem várunk visszajelzést
+
+- Megmutatjuk a következő kártyát
+  - Várunk a felhasználó visszajelzésére
+  - Vagy lejár az idő
+  - Ha a felhasználó reagált, értékeljük a visszajelzést
+    - Jó/nem jó
+    - Mennyi volt a reakcióidő
+  - Az értékelést megjelenítjük
+    - jó/nem jó
+    - pontszám frissítése (hogy számoljuk a pontokat?)
+
+- Ezt ismételjük, amíg le nem jár az idő 
+  - a hátralévő időt folyamatosan kijelezzük (mennyi a játékidő?)
+
+

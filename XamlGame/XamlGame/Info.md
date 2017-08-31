@@ -78,3 +78,4 @@ Segítségével külső fejlesztők csomagjait használhatjuk a projektünkben. 
 - A Stackpanel lehetőségeinek a végigpróbálása (alulról felfelé, felülről lefelé, balról jobbra, jobbról balra irányultság). Nézzétek meg, mi van, ha nem fér ki egy sorba/oszlopba, ami belekerül.
 - Különböző ikonok kipróbálása
 - Egy rövid md állomány készítése, mondjuk jegyzet a mai napról
+
