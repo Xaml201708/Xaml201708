@@ -75,11 +75,15 @@ Segítségével külső fejlesztők csomagjait használhatjuk a projektünkben. 
 
 
 
-## Házi feladat
+## Házi feladat  (1. alkalom)
 - Egy GitHub account készítése
 - A Stackpanel lehetőségeinek a végigpróbálása (alulról felfelé, felülről lefelé, balról jobbra, jobbról balra irányultság). Nézzétek meg, mi van, ha nem fér ki egy sorba/oszlopba, ami belekerül.
 - Különböző ikonok kipróbálása
 - Egy rövid md állomány készítése, mondjuk jegyzet a mai napról
+
+## Házi feladat (2. alkalom)
+- Hogyan lehetne a pontszámot számolni a játékban?
+- 
 
 ## Visszatérni
 ### Roslyn
