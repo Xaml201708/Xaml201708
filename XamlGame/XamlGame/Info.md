@@ -86,6 +86,7 @@ Segítségével külső fejlesztők csomagjait használhatjuk a projektünkben. 
 
 ## Házi feladat (3. alkalom)
 - a játék debugolása breakpointokkal
+- végignézni a todokat és megpróbálni megoldani őket
 
 ## Visszatérni
 ### Roslyn

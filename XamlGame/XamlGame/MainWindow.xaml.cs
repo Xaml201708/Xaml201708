@@ -71,7 +71,6 @@ namespace XamlGame
                 ShowNewCardButton.IsEnabled = false;
             }
 
-
             //dobunk dobókockával
             var dobas = dobokocka.Next(0, 5);
 
@@ -81,8 +80,16 @@ namespace XamlGame
             //az erre a célra létrehozott változóba
             elozoKartya = CardPlaceRight.Icon;
 
+            //eltüntetjük az előző kártyát
+            var animationOut = new DoubleAnimation(1, 0, TimeSpan.FromMilliseconds(100));
+            CardPlaceRight.BeginAnimation(OpacityProperty, animationOut);
+
             //amelyik kártyát kijelöli a kocka, megjelenítjük a jobboldali kártyahelyen.
             CardPlaceRight.Icon = kartyak[dobas];
+
+            //megjelenítjük az új kártyát
+            var animationIn = new DoubleAnimation(0, 1, TimeSpan.FromMilliseconds(100));
+            CardPlaceRight.BeginAnimation(OpacityProperty, animationIn);
 
         }
 
@@ -159,7 +166,6 @@ namespace XamlGame
             AvalaszLassuEltuntetese();
         }
 
-
         private void AValaszHelytelen()
         {
             CardPlaceLeft.Foreground = Brushes.Red;
@@ -172,7 +178,8 @@ namespace XamlGame
         /// </summary>
         private void AvalaszLassuEltuntetese()
         {
-            // animáció: idő elteltével egy tulajdonság értékének a változtatása
+            //animáció: idő elteltével egy tulajdonság értékének a változtatása
+            //todo: ezt a változót kihelyezni a Window szintjére
             var animation = new DoubleAnimation(1, 0, TimeSpan.FromMilliseconds(1000));
             CardPlaceLeft.BeginAnimation(OpacityProperty, animation);
         }
