@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FontAwesome.WPF;
+using System.Diagnostics;
 
 namespace XamlGame
 {
@@ -78,12 +79,40 @@ namespace XamlGame
 
         }
 
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            Debug.WriteLine(e.Key);
+            if (e.Key == Key.Left)
+            { //balranyilat nyomtunk
+                NoAnswer();
+            }
+
+            if (e.Key == Key.Right)
+            { //jobbranyilat nyomtunk
+                YesAnswer();
+            }
+
+            if (e.Key == Key.Down)
+            { }
+
+        }
+
         private void PartiallyButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
         private void YesButton_Click(object sender, RoutedEventArgs e)
+        {
+            YesAnswer();
+        }
+
+        private void NoButton_Click(object sender, RoutedEventArgs e)
+        {
+            NoAnswer();
+        }
+
+        private void YesAnswer()
         {
             if (elozoKartya == CardPlaceRight.Icon)
             { //valóban egyezik, a két kártya azonos
@@ -97,7 +126,7 @@ namespace XamlGame
             UjKartyaHuzasa();
         }
 
-        private void NoButton_Click(object sender, RoutedEventArgs e)
+        private void NoAnswer()
         {
             if (elozoKartya == CardPlaceRight.Icon)
             { //Egyezik, a válasz helytelen
