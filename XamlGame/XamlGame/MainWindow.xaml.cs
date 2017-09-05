@@ -142,11 +142,13 @@ namespace XamlGame
 
         private void AValaszHelyes()
         {
+            CardPlaceLeft.Foreground = Brushes.Green;
             CardPlaceLeft.Icon = FontAwesomeIcon.Check;
         }
 
         private void AValaszHelytelen()
         {
+            CardPlaceLeft.Foreground = Brushes.Red;
             CardPlaceLeft.Icon = FontAwesomeIcon.Times;
         }
 
