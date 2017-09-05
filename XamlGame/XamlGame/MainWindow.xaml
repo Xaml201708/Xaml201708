@@ -69,15 +69,62 @@
                          />
 
         </Grid>
-
-        <fa:ImageAwesome x:Name="CardPlaceRight" 
-                         Grid.Column="1" 
-                         Grid.Row="1"
+        <Border 
+                Grid.Column="1" 
+                Grid.Row="1" 
+                Background="Azure"
+                Margin="20"
+            >
+            <Border.Effect>
+                <DropShadowEffect/>
+            </Border.Effect>
+            <!-- Ahhoz, hogy nyújtani tudjak, kell transzfomáció-->
+            <!-- Ez egyelőre nem csinál semmit, -->
+            <!--  de ha a paraméterét -->
+            <!-- módosítom, akkor transzformálni fog -->
+            <!-- ezzel módosítja a megjelenítést -->
+            <Border.RenderTransform>
+                <!-- A nyújtást pedig ez a transzformáció végzi-->
+                <!-- például x irányba nyújt,y irányba összehúz-->
+                <!--<ScaleTransform ScaleX="1.2" ScaleY="0.5"/>-->
+                <ScaleTransform />
+            </Border.RenderTransform>
+            <Border.Triggers>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <!-- Ha föléállunk egérrel, akkor ezt végrehajtja-->
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation To="1.1" Duration="0:0:0.2"
+                                             Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleX)"
+                                         />
+                            <DoubleAnimation To="1.1" Duration="0:0:0.2"
+                                             Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)"
+                                         />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <!-- Ha föléállunk egérrel, akkor ezt végrehajtja-->
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation To="1" Duration="0:0:0.2"
+                                             Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleX)"
+                                         />
+                            <DoubleAnimation To="1" Duration="0:0:0.2"
+                                             Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)"
+                                         />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Border.Triggers>
+            <fa:ImageAwesome x:Name="CardPlaceRight" 
                          Icon="None" 
                          VerticalAlignment="Center"
                          HorizontalAlignment="Center" 
                          Margin="20"
                          />
+        </Border>
+
 
         <!-- Lábléc -->
         <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
