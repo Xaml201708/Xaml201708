@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FontAwesome.WPF;
 using System.Diagnostics;
+using System.Windows.Media.Animation;
 
 namespace XamlGame
 {
@@ -155,13 +156,25 @@ namespace XamlGame
         {
             CardPlaceLeft.Foreground = Brushes.Green;
             CardPlaceLeft.Icon = FontAwesomeIcon.Check;
+            AvalaszLassuEltuntetese();
         }
+
 
         private void AValaszHelytelen()
         {
             CardPlaceLeft.Foreground = Brushes.Red;
             CardPlaceLeft.Icon = FontAwesomeIcon.Times;
+            AvalaszLassuEltuntetese();
         }
 
+        /// <summary>
+        /// Animáció segítségével az Opacity tulajdonságát a CardPlaceLeft-nek 1-ről 0-ra állítjuk
+        /// </summary>
+        private void AvalaszLassuEltuntetese()
+        {
+            // animáció: idő elteltével egy tulajdonság értékének a változtatása
+            var animation = new DoubleAnimation(1, 0, TimeSpan.FromMilliseconds(1000));
+            CardPlaceLeft.BeginAnimation(OpacityProperty, animation);
+        }
     }
 }

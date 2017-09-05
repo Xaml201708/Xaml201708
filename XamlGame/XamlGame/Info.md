@@ -83,7 +83,9 @@ Segítségével külső fejlesztők csomagjait használhatjuk a projektünkben. 
 
 ## Házi feladat (2. alkalom)
 - Hogyan lehetne a pontszámot számolni a játékban?
-- 
+
+## Házi feladat (3. alkalom)
+- a játék debugolása breakpointokkal
 
 ## Visszatérni
 ### Roslyn
