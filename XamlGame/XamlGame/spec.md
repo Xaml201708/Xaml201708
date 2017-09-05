@@ -91,3 +91,33 @@ Elindul a játék
 - a játék érzésének javítása (két egyforma kártya esetén ez valahogy jelenjen meg)
 - visszaszámlálás
 - pontszámok számítása
+
+### Desktop felület programozása
+- többszálú programozás
+
+
+
+
+                             +----------+
+                             |          |
+                             | Robot 2  |
+                             |          |
+                             |          |
+                             +----------+
+      +----------+                ^                          +-----------+
+      |          |                |                          |           |
+      |Robot 1   |+---------+     |       +-----------------+| Robot 3   |
+      |          |          |     |       |                  |           |
+      |          |          |     |       |                  |           |
+      +----------+          |     |       |                  +-----------+
+
+
+                             +-----------+
+                             |           |
+                             |           |
+                             | Áramforrás|
+                             |           |
+                             |           |
+                             +-----------+
+
+Egyszerre mindig csak egy kap áramot, de mivel nagyon gyorsan váltunk az egyes robotok között, olyan mint a fényképekből létrejövő mozgókép.

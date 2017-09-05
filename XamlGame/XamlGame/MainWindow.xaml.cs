@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using FontAwesome.WPF;
 using System.Diagnostics;
 using System.Windows.Media.Animation;
+using System.Windows.Threading;
 
 namespace XamlGame
 {
@@ -31,6 +32,9 @@ namespace XamlGame
         //tehát létrehozom a kártyatartómat, ahol az egyes lapok számmal lesznek megjelölve
         FontAwesomeIcon[] kartyak = new FontAwesome.WPF.FontAwesomeIcon[6];
 
+        TimeSpan visszalevoIdo;
+        DispatcherTimer ingaora;
+
         public MainWindow()
         { //Ez a függvény akkor fut le (hajtódik végre) amikor megjelenik először a MainWindow nevű ablak
             InitializeComponent();
@@ -43,6 +47,46 @@ namespace XamlGame
             kartyak[4] = FontAwesome.WPF.FontAwesomeIcon.Male;
             kartyak[5] = FontAwesome.WPF.FontAwesomeIcon.Female;
 
+            //Felparaméterezzük az ingaóránkat:
+            //másodpercenként adjon egy eseményt
+            ingaora = new DispatcherTimer(
+                TimeSpan.FromSeconds(1)         //egy másodpercenként kérem az eseményt
+                ,DispatcherPriority.Normal      //semmi különleges, semmi fontos, néhány századmásodperc nem számít
+                ,IngaoraUt                      //ezt hívjuk minden alkalommal
+                ,Application.Current.Dispatcher //ennek segítségével tudunk a felületre adatot küldeni
+                );
+            //mivel azonnal elindul, megállítom, és csak a játék kezdetekor
+            //indítjuk el
+            ingaora.Stop();
+
+        }
+
+        /// <summary>
+        /// Ezt a függvényt hívja az ingaóra minden alkalommal, amikor üt
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void IngaoraUt(object sender, EventArgs e)
+        {
+            //egy másodperccel csökkentem a hátralévő időt
+            visszalevoIdo = visszalevoIdo.Add(TimeSpan.FromSeconds(-1));
+            //szöveg a belsejében cserével
+            CountdownLabel.Content = $"Visszaszámolás: {visszalevoIdo}";
+            if (visszalevoIdo == TimeSpan.Zero)
+            {
+                JatekVege();
+            }
+        }
+
+        private void JatekKezdete()
+        {
+            visszalevoIdo = TimeSpan.FromSeconds(55);
+            ingaora.Start();
+        }
+
+        private void JatekVege()
+        {
+            ingaora.Stop();
         }
 
         private void ShowNewCardButton_Click(object sender, RoutedEventArgs e)
@@ -60,6 +104,7 @@ namespace XamlGame
             //ha (a húzások száma egyenlő kettővel)
             if (huzasokSzama == 2)
             { //akkor engedélyezzük a gombokat
+                //todo: ez a játék kezdete, ki is lehetne szervezni
                 NoButton.IsEnabled = true;
                 YesButton.IsEnabled = true;
 
@@ -69,6 +114,8 @@ namespace XamlGame
                 //Innentől kezdve csak az igen és a nem gomb kell, hogy éljen
                 //Az új kártyakérő gombot letiltjuk
                 ShowNewCardButton.IsEnabled = false;
+
+                JatekKezdete();
             }
 
             //dobunk dobókockával
