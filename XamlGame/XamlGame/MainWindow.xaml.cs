@@ -24,10 +24,24 @@ namespace XamlGame
     {
         int huzasokSzama = 0;
         FontAwesomeIcon elozoKartya = FontAwesomeIcon.None;
+        //Dobókocka
+        Random dobokocka = new Random();
+        //kell egy hatlapos kártyacsomag, létrehozzuk a hat tárhelyet (polcot) ahova kártyákat tudok tenni
+        //tehát létrehozom a kártyatartómat, ahol az egyes lapok számmal lesznek megjelölve
+        FontAwesomeIcon[] kartyak = new FontAwesome.WPF.FontAwesomeIcon[6];
 
         public MainWindow()
-        {
+        { //Ez a függvény akkor fut le (hajtódik végre) amikor megjelenik először a MainWindow nevű ablak
             InitializeComponent();
+
+            //A kártyatartót feltöltöm kártyalapokkal
+            kartyak[0] = FontAwesome.WPF.FontAwesomeIcon.Car;
+            kartyak[1] = FontAwesome.WPF.FontAwesomeIcon.SnowflakeOutline;
+            kartyak[2] = FontAwesome.WPF.FontAwesomeIcon.Briefcase;
+            kartyak[3] = FontAwesome.WPF.FontAwesomeIcon.Book;
+            kartyak[4] = FontAwesome.WPF.FontAwesomeIcon.Male;
+            kartyak[5] = FontAwesome.WPF.FontAwesomeIcon.Female;
+
         }
 
         private void ShowNewCardButton_Click(object sender, RoutedEventArgs e)
@@ -56,25 +70,17 @@ namespace XamlGame
                 ShowNewCardButton.IsEnabled = false;
             }
 
-            //kell egy hatlapos kártyacsomag
-            var kartyak = new FontAwesome.WPF.FontAwesomeIcon[6];
-            kartyak[0] = FontAwesome.WPF.FontAwesomeIcon.Car;
-            kartyak[1] = FontAwesome.WPF.FontAwesomeIcon.SnowflakeOutline;
-            kartyak[2] = FontAwesome.WPF.FontAwesomeIcon.Briefcase;
-            kartyak[3] = FontAwesome.WPF.FontAwesomeIcon.Book;
-            kartyak[4] = FontAwesome.WPF.FontAwesomeIcon.Male;
-            kartyak[5] = FontAwesome.WPF.FontAwesomeIcon.Female;
 
             //dobunk dobókockával
-            var dobokocka = new Random();
             var dobas = dobokocka.Next(0, 5);
 
             //System.Diagnostics.Debug.WriteLine(dobas);
 
-            //amelyik kártyát kijelöli a kocka, megjelenítjük a jobboldali kártyahelyen.
-
+            //elmentem aktuális kártyát, ami a húzás után az előző kártya lesz
+            //az erre a célra létrehozott változóba
             elozoKartya = CardPlaceRight.Icon;
 
+            //amelyik kártyát kijelöli a kocka, megjelenítjük a jobboldali kártyahelyen.
             CardPlaceRight.Icon = kartyak[dobas];
 
         }

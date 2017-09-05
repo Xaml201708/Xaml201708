@@ -86,3 +86,8 @@ Elindul a játék
 - adjunk segítséget a képernyőn, hogy milyen billentyűkkel lehet a játékot játszani.
 - a visszajelző ábrának a méretét és a színét kicsit javítsuk
 - A billentyűk csak akkor éljenek, ha már a játék elindult
+
+- a kód tisztítása
+- a játék érzésének javítása (két egyforma kártya esetén ez valahogy jelenjen meg)
+- visszaszámlálás
+- pontszámok számítása
