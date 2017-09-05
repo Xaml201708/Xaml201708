@@ -71,7 +71,9 @@ namespace XamlGame
             //egy másodperccel csökkentem a hátralévő időt
             visszalevoIdo = visszalevoIdo.Add(TimeSpan.FromSeconds(-1));
             //szöveg a belsejében cserével
-            CountdownLabel.Content = $"Visszaszámolás: {visszalevoIdo}";
+            CountdownLabel.Content = $"Visszaszámolás: {visszalevoIdo.ToString("mm\\:ss")}";
+            //CountdownLabel.Content = $"Visszaszámolás: {visszalevoIdo.Minutes}:{visszalevoIdo.Seconds}"; //ez nem elég jó, levágja a nullákat
+            //CountdownLabel.Content = $"Visszaszámolás: {visszalevoIdo.Minutes:00}:{visszalevoIdo.Seconds:00}"; //ez így már jó, kiegészíti a számokat két 0-val
             if (visszalevoIdo == TimeSpan.Zero)
             {
                 JatekVege();
