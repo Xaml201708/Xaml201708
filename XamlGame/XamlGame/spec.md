@@ -80,3 +80,8 @@ Elindul a játék
   - a hátralévő időt folyamatosan kijelezzük (mennyi a játékidő?)
 
 
+### Hibajavítások/apróbb módosítások
+- legyen az ablaknak egy minimális mérete
+- fogadjunk el a billentyűzetről is visszajelzést
+- adjunk segítséget a képernyőn, hogy milyen billentyűkkel lehet a játékot játszani.
+- a visszajelző ábrának a méretét és a színét kicsit javítsuk
