@@ -148,7 +148,11 @@
                          VerticalAlignment="Center"
                          HorizontalAlignment="Center" 
                          Margin="20"
-                         />
+                         >
+                <fa:ImageAwesome.RenderTransform>
+                    <ScaleTransform x:Name="imageScaleTransform"/>
+                </fa:ImageAwesome.RenderTransform>
+            </fa:ImageAwesome>
         </Border>
 
         <!-- Lábléc -->

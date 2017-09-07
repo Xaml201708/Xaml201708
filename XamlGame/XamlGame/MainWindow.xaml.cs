@@ -48,6 +48,7 @@ namespace XamlGame
 
         //top lista
         List<long> topList = new List<long>();
+        int dobas;
 
         public MainWindow()
         { //Ez a függvény akkor fut le (hajtódik végre) amikor megjelenik először a MainWindow nevű ablak
@@ -210,7 +211,7 @@ namespace XamlGame
             }
 
             //dobunk dobókockával
-            var dobas = dobokocka.Next(0, 5);
+            dobas = dobokocka.Next(0, 5);
 
             //System.Diagnostics.Debug.WriteLine(dobas);
 
@@ -220,8 +221,13 @@ namespace XamlGame
 
             //eltüntetjük az előző kártyát
             var animationOut = new DoubleAnimation(1, 0, TimeSpan.FromMilliseconds(100));
-            CardPlaceRight.BeginAnimation(OpacityProperty, animationOut);
+            animationOut.Completed += AnimationOut_Completed;
+            imageScaleTransform.BeginAnimation(ScaleTransform.ScaleXProperty, animationOut);
 
+        }
+
+        private void AnimationOut_Completed(object sender, EventArgs e)
+        {
             //amelyik kártyát kijelöli a kocka, megjelenítjük a jobboldali kártyahelyen.
             CardPlaceRight.Icon = kartyak[dobas];
 
@@ -230,8 +236,7 @@ namespace XamlGame
 
             //megjelenítjük az új kártyát
             var animationIn = new DoubleAnimation(0, 1, TimeSpan.FromMilliseconds(100));
-            CardPlaceRight.BeginAnimation(OpacityProperty, animationIn);
-
+            imageScaleTransform.BeginAnimation(ScaleTransform.ScaleXProperty, animationIn);
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
