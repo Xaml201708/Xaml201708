@@ -17,6 +17,8 @@ using System.Diagnostics;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
 using System.Collections.ObjectModel;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace XamlGame
 {
@@ -37,8 +39,9 @@ namespace XamlGame
 
         //stopperóra a reakcióidő méréséhez
         Stopwatch stopper = new Stopwatch();
-
-        int huzasokSzama = 0;
+        string fileNev = "toplista.txt";
+        
+            int huzasokSzama = 0;
         //Az összes reakciót eltároljuk, hogy átlagot tudjunk számítani
         List<long> osszesReakcio = new List<long>();
         long pontszam = 0;
@@ -69,6 +72,14 @@ namespace XamlGame
             //mivel azonnal elindul, megállítom, és csak a játék kezdetekor
             //indítjuk el
             ingaora.Stop();
+
+            //visszatöltjük a toplistát
+            if (File.Exists(fileNev))
+            {
+                var fs = new FileStream(fileNev, FileMode.Open);
+                var szovegesito = new XmlSerializer(typeof(List<long>));
+                topList = (List<long>)szovegesito.Deserialize(fs);
+            }
 
             JatekFelkeszules();
 
@@ -121,6 +132,7 @@ namespace XamlGame
             HatralevoIdoFrissitese();
             ReakcioIdoFrissitese(0, 0);
             PontszamFrissitese();
+            ToplistaMegjelenitese();
         }
 
         private void JatekKezdete()
@@ -146,6 +158,12 @@ namespace XamlGame
                     topList.RemoveAt(0); //mivel a sorbarendezés a legkisebbtől a legnagyobbig megy, a törlendő a tetején lesz
                 }
                 ToplistaMegjelenitese();
+
+                //top lista elmentése
+                var fs = new FileStream(fileNev, FileMode.Create);
+                var szovegesito = new XmlSerializer(typeof(List<long>));
+                szovegesito.Serialize(fs, topList);
+
             }
 
             //vége a játéknak, gombokat tiltani
