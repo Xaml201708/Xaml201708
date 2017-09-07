@@ -16,6 +16,7 @@ using FontAwesome.WPF;
 using System.Diagnostics;
 using System.Windows.Media.Animation;
 using System.Windows.Threading;
+using System.Collections.ObjectModel;
 
 namespace XamlGame
 {
@@ -41,6 +42,9 @@ namespace XamlGame
         //Az összes reakciót eltároljuk, hogy átlagot tudjunk számítani
         List<long> osszesReakcio = new List<long>();
         long pontszam = 0;
+
+        //top lista
+        List<long> topList = new List<long>();
 
         public MainWindow()
         { //Ez a függvény akkor fut le (hajtódik végre) amikor megjelenik először a MainWindow nevű ablak
@@ -129,6 +133,32 @@ namespace XamlGame
             ingaora.Stop();
             //újrakezdés gomb megjelenik
             RestartGameButton.Visibility = Visibility.Visible;
+            
+            //todo: a toplista méretét változóban szabályozni
+            if (topList.Count < 5 //ha még nincs 5 elem a listán
+                ||  pontszam>=topList.Min()) //vagy ráférünk a top 5 listára
+            { //a toplista frissítése
+                topList.Add(pontszam);
+
+                if (topList.Count>5)
+                { //a fölösleget törölni kell
+                    topList.Sort(); //sorbarendezés a kisebbtől a nagyobbig
+                    topList.RemoveAt(0); //mivel a sorbarendezés a legkisebbtől a legnagyobbig megy, a törlendő a tetején lesz
+                }
+                ToplistaMegjelenitese();
+            }
+
+            //vége a játéknak, gombokat tiltani
+            NoButton.IsEnabled = false;
+            YesButton.IsEnabled = false;
+            //billenytűket nem figyelni
+            huzasokSzama = 0;
+        }
+
+        private void ToplistaMegjelenitese()
+        {
+            //ObservableCollection a ListBox-szal remekül együttműködik, és a List-ből pedig létre tudjuk hozni
+            TopListBox.ItemsSource = new ObservableCollection<long>(topList.OrderByDescending(x=>x));
         }
 
         /// <summary>

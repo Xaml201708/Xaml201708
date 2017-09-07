@@ -62,6 +62,13 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+            <ListBox x:Name="TopListBox"
+                     Grid.Column="0"
+                     Grid.Row="0"
+                     Grid.RowSpan="3" BorderBrush="{x:Null}" HorizontalContentAlignment="Right"
+                     >
+                
+            </ListBox>
             <fa:ImageAwesome x:Name="CardPlaceLeft"
                              Grid.Column="1" Grid.Row="1"
                              Icon="None" 

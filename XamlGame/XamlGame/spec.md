@@ -85,6 +85,7 @@ Elindul a játék
 - Helyes válasz esetén hozzáadunk a ponthoz, helytelen válasz esetén vonjunk le a pontszámból. 
 - a pontszám kapcsolódjon a reakcióidőhöz: ha jó a válasz, akkor minél gyorsabb volt a reakciónk annál jobb, ha rossz a válasz, akkor a levonandó pont legyen annál nagyobb, minél többet vártunk.
 - a játék tartson nyilván top 5 játékot
+- a játék jelenítse meg a top 5 listát
 - A játék végén frissítse a top 5 listát
 - Frissítéskor a top 5 listát mentsük el
 - Az alkalmazás indításakor töltse be a top 5 listánkat
