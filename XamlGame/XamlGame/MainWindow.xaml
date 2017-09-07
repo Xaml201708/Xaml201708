@@ -32,7 +32,8 @@
                    Margin="10"
                    HorizontalAlignment="Left"
                    />
-            <Label Content="Pontszám: 6500" 
+            <Label Content="Pontszám: 0" 
+                   x:Name="PontszamLabel"
                    Padding="10"
                    Margin="10"
                    HorizontalAlignment="Left"

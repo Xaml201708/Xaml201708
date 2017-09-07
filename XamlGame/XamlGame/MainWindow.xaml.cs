@@ -40,7 +40,7 @@ namespace XamlGame
 
         //Az összes reakciót eltároljuk, hogy átlagot tudjunk számítani
         List<long> osszesReakcio = new List<long>();
-
+        long pontszam = 0;
 
         public MainWindow()
         { //Ez a függvény akkor fut le (hajtódik végre) amikor megjelenik először a MainWindow nevű ablak
@@ -192,7 +192,6 @@ namespace XamlGame
 
         private void YesAnswer()
         {
-            ReakcioidoEsPontSzamitas();
             if (elozoKartya == CardPlaceRight.Icon)
             { //valóban egyezik, a két kártya azonos
                 AValaszHelyes();
@@ -207,7 +206,6 @@ namespace XamlGame
 
         private void NoAnswer()
         {
-            ReakcioidoEsPontSzamitas();
             if (elozoKartya == CardPlaceRight.Icon)
             { //Egyezik, a válasz helytelen
                 AValaszHelytelen();
@@ -226,7 +224,7 @@ namespace XamlGame
         /// pont számítás
         /// eredmények megjelenítése
         /// </summary>
-        private void ReakcioidoEsPontSzamitas()
+        private void ReakcioidoEsPontSzamitas(bool helyesValasz)
         {
             stopper.Stop();
             var utolsoReakcioIdo = stopper.ElapsedMilliseconds;
@@ -315,12 +313,27 @@ namespace XamlGame
             }
             var reakciokAtlaga4 = reakciokOsszege / osszesReakcio.Count;
 
-            ReakcioLabel.Content = $"Reakció: {utolsoReakcioIdo}/{reakciokAtlaga}/{reakciokAtlaga2}/{reakciokAtlaga3}/{reakciokAtlaga4 }";
+            ReakcioLabel.Content = $"Reakció: {utolsoReakcioIdo}/{reakciokAtlaga3}";
+
+            //Pontszámítás
+
+            if (helyesValasz)
+            {
+                //minél nagyobb a reakcióidőnk, annál kisebb a szám: fordított arányosság
+                pontszam = pontszam + 10000 / utolsoReakcioIdo;
+            }
+            else
+            {   //minél nagyobb a reakcióidőnk annál nagyobb a szám: egyenes arányosság
+                pontszam = pontszam - utolsoReakcioIdo / 1000;
+            }
+
+            PontszamLabel.Content = $"Pontszám: {pontszam}";
 
         }
 
         private void AValaszHelyes()
         {
+            ReakcioidoEsPontSzamitas(true);
             CardPlaceLeft.Foreground = Brushes.Green;
             CardPlaceLeft.Icon = FontAwesomeIcon.Check;
             AvalaszLassuEltuntetese();
@@ -328,6 +341,7 @@ namespace XamlGame
 
         private void AValaszHelytelen()
         {
+            ReakcioidoEsPontSzamitas(false);
             CardPlaceLeft.Foreground = Brushes.Red;
             CardPlaceLeft.Icon = FontAwesomeIcon.Times;
             AvalaszLassuEltuntetese();

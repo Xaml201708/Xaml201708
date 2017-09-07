@@ -88,6 +88,7 @@ Elindul a játék
 - A játék végén frissítse a top 5 listát
 - Frissítéskor a top 5 listát mentsük el
 - Az alkalmazás indításakor töltse be a top 5 listánkat
+- Az eredményjelző "ugrálását" megszüntetni
 
 ### Hibajavítások/apróbb módosítások
 - legyen az ablaknak egy minimális mérete
