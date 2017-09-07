@@ -293,7 +293,29 @@ namespace XamlGame
 
             var reakciokAtlaga2 = reakciokOsszege / osszesReakcio.Count;
 
-            ReakcioLabel.Content = $"Reakció: {utolsoReakcioIdo}/{reakciokAtlaga}/{reakciokAtlaga2}";
+            //ciklus nélkül: LINQ
+            //var reakciokAtlaga3 = osszesReakcio.Average();
+            //magától az átlag számítás törtszámot ad vissza, ezt nekünk kell ilyenkor egésszé alakítani, például így
+            //ennek neve: típuskonverzió
+            var reakciokAtlaga3 = (long)osszesReakcio.Average();
+
+            //amikor nem tudjuk előre, hogy mennyiszer kell végrehajtani
+            //például egy állományt ha végig akarok olvasni, és nem ismerem a méretét, 
+            //akkor addig ismétlem az olvasást, amíg az állomány tartalma el nem fogy
+            //while (true)
+            //{
+
+            //}
+            reakciokOsszege = 0;
+            var hanyadikElem2 = 0;
+            while (hanyadikElem2 < osszesReakcio.Count)
+            {
+                reakciokOsszege = reakciokOsszege + osszesReakcio[hanyadikElem2];
+                hanyadikElem2 = hanyadikElem2 + 1;
+            }
+            var reakciokAtlaga4 = reakciokOsszege / osszesReakcio.Count;
+
+            ReakcioLabel.Content = $"Reakció: {utolsoReakcioIdo}/{reakciokAtlaga}/{reakciokAtlaga2}/{reakciokAtlaga3}/{reakciokAtlaga4 }";
 
         }
 
