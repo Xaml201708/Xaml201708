@@ -79,6 +79,15 @@ Elindul a játék
 - Ezt ismételjük, amíg le nem jár az idő 
   - a hátralévő időt folyamatosan kijelezzük (mennyi a játékidő?)
 
+### Pontszámítás, reakcióidő mérése
+- A reakcióidőt, azt az új kártya megjelenításátől számolva kell érteni, ezredmásodpercekben mérve.
+- Mivel a játékban sok kártya felismerés lesz, ezért a reakcióidők átlagát fogjuk számolni.
+- Helyes válasz esetén hozzáadunk a ponthoz, helytelen válasz esetén vonjunk le a pontszámból. 
+- a pontszám kapcsolódjon a reakcióidőhöz: ha jó a válasz, akkor minél gyorsabb volt a reakciónk annál jobb, ha rossz a válasz, akkor a levonandó pont legyen annál nagyobb, minél többet vártunk.
+- a játék tartson nyilván top 5 játékot
+- A játék végén frissítse a top 5 listát
+- Frissítéskor a top 5 listát mentsük el
+- Az alkalmazás indításakor töltse be a top 5 listánkat
 
 ### Hibajavítások/apróbb módosítások
 - legyen az ablaknak egy minimális mérete
