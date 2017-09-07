@@ -37,7 +37,8 @@
                    Margin="10"
                    HorizontalAlignment="Left"
                    />
-            <Label Content="oooo x1" 
+            <Label Content="Reakció: 0"
+                   x:Name="ReakcioLabel"
                    Padding="10"
                    Margin="10"
                    HorizontalAlignment="Left"

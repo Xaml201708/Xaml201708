@@ -35,6 +35,13 @@ namespace XamlGame
         TimeSpan visszalevoIdo;
         DispatcherTimer ingaora;
 
+        //stopperóra a reakcióidő méréséhez
+        Stopwatch stopper = new Stopwatch();
+
+        //Az összes reakciót eltároljuk, hogy átlagot tudjunk számítani
+        List<long> osszesReakcio = new List<long>();
+
+
         public MainWindow()
         { //Ez a függvény akkor fut le (hajtódik végre) amikor megjelenik először a MainWindow nevű ablak
             InitializeComponent();
@@ -136,6 +143,9 @@ namespace XamlGame
             //amelyik kártyát kijelöli a kocka, megjelenítjük a jobboldali kártyahelyen.
             CardPlaceRight.Icon = kartyak[dobas];
 
+            //nem foglalkozom esetszétválasztással, mindig újraindítom
+            stopper.Restart();
+
             //megjelenítjük az új kártyát
             var animationIn = new DoubleAnimation(0, 1, TimeSpan.FromMilliseconds(100));
             CardPlaceRight.BeginAnimation(OpacityProperty, animationIn);
@@ -182,6 +192,7 @@ namespace XamlGame
 
         private void YesAnswer()
         {
+            ReakcioidoEsPontSzamitas();
             if (elozoKartya == CardPlaceRight.Icon)
             { //valóban egyezik, a két kártya azonos
                 AValaszHelyes();
@@ -196,6 +207,7 @@ namespace XamlGame
 
         private void NoAnswer()
         {
+            ReakcioidoEsPontSzamitas();
             if (elozoKartya == CardPlaceRight.Icon)
             { //Egyezik, a válasz helytelen
                 AValaszHelytelen();
@@ -206,6 +218,75 @@ namespace XamlGame
             }
 
             UjKartyaHuzasa();
+        }
+
+        /// <summary>
+        /// reakcióidő mérése
+        /// átlagos reakcióidő számítása
+        /// pont számítás
+        /// eredmények megjelenítése
+        /// </summary>
+        private void ReakcioidoEsPontSzamitas()
+        {
+            stopper.Stop();
+            var utolsoReakcioIdo = stopper.ElapsedMilliseconds;
+
+            //Az utolsó reakcióidőt elmentjük a listánkba
+            osszesReakcio.Add(utolsoReakcioIdo);
+
+            //atlagosReakcioIdo = ?
+
+            //------------------------------------------------------------------------------------
+            // Ismétlődő műveletek kezelése: ciklusok
+            //------------------------------------------------------------------------------------
+
+            //var reakciokOsszeg = osszesReakcio[0] + osszesReakcio[1] +...+ osszesReakcio[utolso];
+
+            //Több sor megjegyzésbe tétele: Ctrl+K aztán Ctrl+C
+
+            //var reakciokOsszeg = 0;
+            //reakciokOsszeg = reakciokOsszeg + osszesReakcio[0];
+            //reakciokOsszeg = reakciokOsszeg + osszesReakcio[1];
+            //...
+            //reakciokOsszeg = reakciokOsszeg + osszesReakcio[utolso];
+
+            //var reakciokOsszeg = 0;
+            //var hanyadikElem = 0
+            //reakciokOsszeg = reakciokOsszeg + osszesReakcio[hanyadikElem];
+            //hanyadikElem = hanyadikElem + 1;
+            //reakciokOsszeg = reakciokOsszeg + osszesReakcio[hanyadikElem];
+            //hanyadikElem = hanyadikElem + 1;
+
+            //reakciokOsszeg = reakciokOsszeg + osszesReakcio[hanyadikElem];
+            //hanyadikElem = hanyadikElem + 1;
+
+
+            //var reakciokOsszeg = 0;
+            //var hanyadikElem = 0
+            //reakciokOsszeg = reakciokOsszeg + osszesReakcio[hanyadikElem];
+            //hanyadikElem = hanyadikElem + 1;
+            //ha van még elem akkor visszaugrani két sort és tovább számolni különben folytatni a programot
+
+            long reakciokOsszege = 0;
+
+            //Az i értéke 0-val kezdve egészen addig, amíg igaz az, hogy i< length
+            //ez hajtódik végre: i++ (Az i értéke eggyel nő)
+            //és minden ilyen lépés után ami a kódblokkban van, az egyszer végrehajtódik.
+            //for (int i = 0; i < length; i++) 
+            //{
+            //}
+
+            for (int hanyadikElem = 0; hanyadikElem < osszesReakcio.Count; hanyadikElem++)
+            {
+                reakciokOsszege = reakciokOsszege + osszesReakcio[hanyadikElem];
+            }
+
+            var reakciokAtlaga = reakciokOsszege / osszesReakcio.Count;
+
+            ReakcioLabel.Content = $"Reakció: {utolsoReakcioIdo}/{reakciokAtlaga}";
+
+
+
         }
 
         private void AValaszHelyes()
