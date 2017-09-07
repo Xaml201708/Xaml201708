@@ -283,9 +283,17 @@ namespace XamlGame
 
             var reakciokAtlaga = reakciokOsszege / osszesReakcio.Count;
 
-            ReakcioLabel.Content = $"Reakció: {utolsoReakcioIdo}/{reakciokAtlaga}";
+            //Következő ciklus: egy emberközelibb megoldás
+            reakciokOsszege = 0;
 
+            foreach (var reakcioIdo in osszesReakcio)
+            {
+                reakciokOsszege = reakciokOsszege + reakcioIdo;
+            }
 
+            var reakciokAtlaga2 = reakciokOsszege / osszesReakcio.Count;
+
+            ReakcioLabel.Content = $"Reakció: {utolsoReakcioIdo}/{reakciokAtlaga}/{reakciokAtlaga2}";
 
         }
 
