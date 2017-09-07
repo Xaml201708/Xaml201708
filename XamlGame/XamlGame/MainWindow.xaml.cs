@@ -76,9 +76,11 @@ namespace XamlGame
             //visszatöltjük a toplistát
             if (File.Exists(fileNev))
             {
-                var fs = new FileStream(fileNev, FileMode.Open);
-                var szovegesito = new XmlSerializer(typeof(List<long>));
-                topList = (List<long>)szovegesito.Deserialize(fs);
+                using (var fs = new FileStream(fileNev, FileMode.Open))
+                {
+                    var szovegesito = new XmlSerializer(typeof(List<long>));
+                    topList = (List<long>)szovegesito.Deserialize(fs);
+                }
             }
 
             JatekFelkeszules();
@@ -119,7 +121,7 @@ namespace XamlGame
             huzasokSzama = 0;
             osszesReakcio = new List<long>();
             pontszam = 0;
-            visszalevoIdo = TimeSpan.FromSeconds(3);
+            visszalevoIdo = TimeSpan.FromSeconds(55);
 
             UjKartyaHuzasa();
 
@@ -160,9 +162,11 @@ namespace XamlGame
                 ToplistaMegjelenitese();
 
                 //top lista elmentése
-                var fs = new FileStream(fileNev, FileMode.Create);
-                var szovegesito = new XmlSerializer(typeof(List<long>));
-                szovegesito.Serialize(fs, topList);
+                using (var fs = new FileStream(fileNev, FileMode.Create))
+                {
+                    var szovegesito = new XmlSerializer(typeof(List<long>));
+                    szovegesito.Serialize(fs, topList);
+                }
 
             }
 

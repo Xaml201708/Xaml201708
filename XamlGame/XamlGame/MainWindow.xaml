@@ -9,97 +9,17 @@
         MinHeight="320" MinWidth="500"
         Title="MainWindow" Height="350" Width="525" 
         KeyDown="Window_KeyDown">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <!-- Fejléc -->
-        <StackPanel Grid.Row="0"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="2"
-                    Orientation="Horizontal"
-                    HorizontalAlignment="Right"
-                    >
-            <Label x:Name="CountdownLabel"
-                   Content="Visszaszámolás: 00:55" 
-                   Padding="10"
-                   Margin="10"
-                   HorizontalAlignment="Left"
-                   />
-            <Label Content="Pontszám: 0" 
-                   x:Name="PontszamLabel"
-                   Padding="10"
-                   Margin="10"
-                   HorizontalAlignment="Left"
-                   />
-            <Label Content="Reakció: 0/0"
-                   x:Name="ReakcioLabel"
-                   Padding="10"
-                   Margin="10"
-                   HorizontalAlignment="Left"
-                   />
-        </StackPanel>
-
-        <!-- Kártyák -->
-
-        <Grid
-                Grid.Column="0" 
-                Grid.Row="1"
-            >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <ListBox x:Name="TopListBox"
-                     Grid.Column="0"
-                     Grid.Row="0"
-                     Grid.RowSpan="3" BorderBrush="{x:Null}" HorizontalContentAlignment="Right"
-                     >
-                
-            </ListBox>
-            <fa:ImageAwesome x:Name="CardPlaceLeft"
-                             Grid.Column="1" Grid.Row="1"
-                             Icon="None" 
-                             VerticalAlignment="Center"
-                             HorizontalAlignment="Center" 
-                             Margin="0" 
-                         />
-
-        </Grid>
-        <Border 
-                Grid.Column="1" 
-                Grid.Row="1" 
-                Background="Azure"
-                Margin="20"
-                RenderTransformOrigin="0.5,0.5"
-            >
-            <Border.Effect>
-                <DropShadowEffect/>
-            </Border.Effect>
-            <!-- Ahhoz, hogy nyújtani tudjak, kell transzfomáció-->
-            <!-- Ez egyelőre nem csinál semmit, -->
-            <!--  de ha a paraméterét -->
-            <!-- módosítom, akkor transzformálni fog -->
-            <!-- ezzel módosítja a megjelenítést -->
-            <Border.RenderTransform>
-                <!-- A nyújtást pedig ez a transzformáció végzi-->
-                <!-- például x irányba nyújt,y irányba összehúz-->
-                <!--<ScaleTransform ScaleX="1.2" ScaleY="0.5"/>-->
-                <ScaleTransform />
-            </Border.RenderTransform>
-            <Border.Triggers>
+    <Window.Resources>
+        <Style x:Key="MouseHoverStyle" TargetType="{x:Type FrameworkElement}">
+            <Style.Setters>
+                <Setter Property="RenderTransformOrigin" Value="0.5, 0.5" />
+                <Setter Property="RenderTransform">
+                    <Setter.Value>
+                        <ScaleTransform />
+                    </Setter.Value>
+                </Setter>
+            </Style.Setters>
+            <Style.Triggers>
                 <EventTrigger RoutedEvent="MouseEnter">
                     <!-- Ha föléállunk egérrel, akkor ezt végrehajtja-->
                     <BeginStoryboard>
@@ -126,7 +46,93 @@
                         </Storyboard>
                     </BeginStoryboard>
                 </EventTrigger>
-            </Border.Triggers>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <!-- Fejléc -->
+        <StackPanel Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    >
+            <Label x:Name="CountdownLabel"
+                   Content="Visszaszámolás: 00:55" 
+                   Padding="10"
+                   Margin="10"
+                   HorizontalAlignment="Left"
+                    Style="{StaticResource MouseHoverStyle}"
+                   />
+            <Label Content="Pontszám: 0" 
+                   x:Name="PontszamLabel"
+                   Padding="10"
+                   Margin="10"
+                   HorizontalAlignment="Left"
+                    Style="{StaticResource MouseHoverStyle}"
+                   />
+            <Label Content="Reakció: 0/0"
+                   x:Name="ReakcioLabel"
+                   Padding="10"
+                   Margin="10"
+                   HorizontalAlignment="Left"
+                    Style="{StaticResource MouseHoverStyle}"
+                   />
+        </StackPanel>
+
+        <!-- Kártyák -->
+
+        <Grid
+                Grid.Column="0" 
+                Grid.Row="1"
+            >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ListBox x:Name="TopListBox"
+                     Grid.Column="0"
+                     Grid.Row="0"
+                     Grid.RowSpan="3" BorderBrush="{x:Null}" HorizontalContentAlignment="Right"
+                    Style="{StaticResource MouseHoverStyle}"
+                     >
+                
+            </ListBox>
+            <fa:ImageAwesome x:Name="CardPlaceLeft"
+                             Grid.Column="1" Grid.Row="1"
+                             Icon="None" 
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center" 
+                             Margin="0" 
+                            Style="{StaticResource MouseHoverStyle}"
+                         />
+
+        </Grid>
+        <Border 
+                Grid.Column="1" 
+                Grid.Row="1" 
+                Background="Azure"
+                Margin="20"
+                Style="{StaticResource MouseHoverStyle}"
+            >
+            <Border.Effect>
+                <DropShadowEffect/>
+            </Border.Effect>
             <fa:ImageAwesome x:Name="CardPlaceRight" 
                          Icon="None" 
                          VerticalAlignment="Center"
@@ -134,7 +140,6 @@
                          Margin="20"
                          />
         </Border>
-
 
         <!-- Lábléc -->
         <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
@@ -152,6 +157,7 @@
                 Margin="10"
                 HorizontalAlignment="Center"
                 IsEnabled="false" Click="NoButton_Click"
+                    Style="{StaticResource MouseHoverStyle}"
                 >
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
@@ -172,6 +178,7 @@
                 Margin="10"
                 HorizontalAlignment="Center"
                 IsEnabled="false" Click="YesButton_Click"
+                    Style="{StaticResource MouseHoverStyle}"
                 >
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
@@ -195,6 +202,7 @@
                 Margin="10"
                 HorizontalAlignment="Center"
                 IsEnabled="false" Click="PartiallyButton_Click"
+                    Style="{StaticResource MouseHoverStyle}"
                 />
 
             <Button x:Name="StartGameButton"
@@ -204,6 +212,7 @@
                     Margin="10"
                     HorizontalAlignment="Center" 
                     Click="StartGameButton_Click"
+                    Style="{StaticResource MouseHoverStyle}"
                 >
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
@@ -228,6 +237,7 @@
                     HorizontalAlignment="Center" 
                     Click="RestartGameButton_Click" 
                     Visibility="Hidden" 
+                    Style="{StaticResource MouseHoverStyle}"
                 >
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
