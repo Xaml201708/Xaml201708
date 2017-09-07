@@ -88,7 +88,16 @@ Elindul a játék
 - A játék végén frissítse a top 5 listát
 - Frissítéskor a top 5 listát mentsük el
 - Az alkalmazás indításakor töltse be a top 5 listánkat
+
 - Az eredményjelző "ugrálását" megszüntetni
+- az első kártyát azt automatikusan jelenítsük meg
+- a játék kezdete után új kártya gomb nem kell
+- a játék végével viszont kell egy új játék gomb, és a játék gombokat le kell tiltani
+- és ha az új játék gombot megnyomjuk, akkor kezdődik minden elölről
+
+### Továbbfejlesztési ötletek
+- ahány gomb látszik a képernyőn, annyi legyen szétosztva a rendelkezésre álló helyre
+
 
 ### Hibajavítások/apróbb módosítások
 - legyen az ablaknak egy minimális mérete

@@ -24,7 +24,6 @@ namespace XamlGame
     /// </summary>
     public partial class MainWindow : Window
     {
-        int huzasokSzama = 0;
         FontAwesomeIcon elozoKartya = FontAwesomeIcon.None;
         //Dobókocka
         Random dobokocka = new Random();
@@ -38,6 +37,7 @@ namespace XamlGame
         //stopperóra a reakcióidő méréséhez
         Stopwatch stopper = new Stopwatch();
 
+        int huzasokSzama = 0;
         //Az összes reakciót eltároljuk, hogy átlagot tudjunk számítani
         List<long> osszesReakcio = new List<long>();
         long pontszam = 0;
@@ -66,6 +66,8 @@ namespace XamlGame
             //indítjuk el
             ingaora.Stop();
 
+            JatekFelkeszules();
+
         }
 
         /// <summary>
@@ -78,7 +80,7 @@ namespace XamlGame
             //egy másodperccel csökkentem a hátralévő időt
             visszalevoIdo = visszalevoIdo.Add(TimeSpan.FromSeconds(-1));
             //szöveg a belsejében cserével
-            CountdownLabel.Content = $"Visszaszámolás: {visszalevoIdo.ToString("mm\\:ss")}";
+            HatralevoIdoFrissitese();
             //CountdownLabel.Content = $"Visszaszámolás: {visszalevoIdo.Minutes}:{visszalevoIdo.Seconds}"; //ez nem elég jó, levágja a nullákat
             //CountdownLabel.Content = $"Visszaszámolás: {visszalevoIdo.Minutes:00}:{visszalevoIdo.Seconds:00}"; //ez így már jó, kiegészíti a számokat két 0-val
             if (visszalevoIdo == TimeSpan.Zero)
@@ -87,20 +89,46 @@ namespace XamlGame
             }
         }
 
+        private void HatralevoIdoFrissitese()
+        {
+            CountdownLabel.Content = $"Visszaszámolás: {visszalevoIdo.ToString("mm\\:ss")}";
+        }
+
+        /// <summary>
+        /// Ezzel előkészítjük a játék változóit és
+        /// húzunk egy kártyát
+        /// </summary>
+        private void JatekFelkeszules()
+        {
+            //új játékhoz új kezdet
+            huzasokSzama = 0;
+            osszesReakcio = new List<long>();
+            pontszam = 0;
+            visszalevoIdo = TimeSpan.FromSeconds(3);
+
+            UjKartyaHuzasa();
+
+            //újrakezdés gomb eltűnik
+            RestartGameButton.Visibility = Visibility.Hidden;
+            //kezdés gomb megjelenik
+            StartGameButton.Visibility = Visibility.Visible;
+
+            //az eredményjelző frissítése
+            HatralevoIdoFrissitese();
+            ReakcioIdoFrissitese(0, 0);
+            PontszamFrissitese();
+        }
+
         private void JatekKezdete()
         {
-            visszalevoIdo = TimeSpan.FromSeconds(55);
             ingaora.Start();
         }
 
         private void JatekVege()
         {
             ingaora.Stop();
-        }
-
-        private void ShowNewCardButton_Click(object sender, RoutedEventArgs e)
-        {
-            UjKartyaHuzasa();
+            //újrakezdés gomb megjelenik
+            RestartGameButton.Visibility = Visibility.Visible;
         }
 
         /// <summary>
@@ -122,7 +150,9 @@ namespace XamlGame
 
                 //Innentől kezdve csak az igen és a nem gomb kell, hogy éljen
                 //Az új kártyakérő gombot letiltjuk
-                ShowNewCardButton.IsEnabled = false;
+                //StartGameButton.IsEnabled = false;
+                //nem letiltjuk, hanem eltüntetjük
+                StartGameButton.Visibility = Visibility.Hidden;
 
                 JatekKezdete();
             }
@@ -313,7 +343,7 @@ namespace XamlGame
             }
             var reakciokAtlaga4 = reakciokOsszege / osszesReakcio.Count;
 
-            ReakcioLabel.Content = $"Reakció: {utolsoReakcioIdo}/{reakciokAtlaga3}";
+            ReakcioIdoFrissitese(utolsoReakcioIdo, reakciokAtlaga3);
 
             //Pontszámítás
 
@@ -327,8 +357,18 @@ namespace XamlGame
                 pontszam = pontszam - utolsoReakcioIdo / 1000;
             }
 
-            PontszamLabel.Content = $"Pontszám: {pontszam}";
+            PontszamFrissitese();
 
+        }
+
+        private void ReakcioIdoFrissitese(long utolsoReakcioIdo, long reakciokAtlaga3)
+        {
+            ReakcioLabel.Content = $"Reakció: {utolsoReakcioIdo}/{reakciokAtlaga3}";
+        }
+
+        private void PontszamFrissitese()
+        {
+            PontszamLabel.Content = $"Pontszám: {pontszam}";
         }
 
         private void AValaszHelyes()
@@ -356,6 +396,16 @@ namespace XamlGame
             //todo: ezt a változót kihelyezni a Window szintjére
             var animation = new DoubleAnimation(1, 0, TimeSpan.FromMilliseconds(1000));
             CardPlaceLeft.BeginAnimation(OpacityProperty, animation);
+        }
+
+        private void RestartGameButton_Click(object sender, RoutedEventArgs e)
+        {
+            JatekFelkeszules();
+        }
+
+        private void StartGameButton_Click(object sender, RoutedEventArgs e)
+        {
+            UjKartyaHuzasa();
         }
     }
 }
